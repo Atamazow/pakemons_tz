@@ -15,77 +15,69 @@ const Authorization = () => {
   if (token) navigate("/");
 
   return (
-   <>
-     <NavLink  style={{ fontSize: 24, color: "gray", textDecoration: "none"}} to="/">Главная страница </NavLink>
-     <Form
-       name="basic"
-       labelCol={{
-         span: 8,
-       }}
-       wrapperCol={{
-         span: 16,
-       }}
-       style={{
-         maxWidth: 570,
-         margin:"50px auto"
-       }}
-       initialValues={{
-         remember: true,
-       }}
-       onFinish={onFinish}
-       autoComplete="off"
-     >
-       <Form.Item
-         label="login"
-         name="login"
-         rules={[
-           {
+    <>
+      <NavLink
+        style={{ fontSize: 24, color: "gray", textDecoration: "none" }}
+        to="/"
+      >
+        Главная страница{" "}
+      </NavLink>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 4,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        style={{
+          maxWidth: 570,
+          margin: "30px auto",
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="login"
+          name="login"
+          rules={[
+            {
+              required: true,
+              message: "Please input your username!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-             required: true,
-             message: "Please input your username!",
-           },
-         ]}
-       >
-         <Input />
-       </Form.Item>
+        <Form.Item
+          label="password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-       <Form.Item
-         label="password"
-         name="password"
-         rules={[
-           {
-             required: true,
-             message: "Please input your password!",
-           },
-         ]}
-       >
-         <Input.Password />
-       </Form.Item>
-
-       <Form.Item
-         name="remember"
-         valuePropName="checked"
-         wrapperCol={{
-           offset: 8,
-           span: 16,
-         }}
-       >
-         <Checkbox>Remember me</Checkbox>
-       </Form.Item>
-
-       <Form.Item
-         wrapperCol={{
-           offset: 8,
-           span: 16,
-         }}
-       >
-         <Button type="primary" htmlType="submit">
-           Submit
-         </Button>
-       </Form.Item>
-     </Form>
-   </>
-
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 6,
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 export default Authorization;
