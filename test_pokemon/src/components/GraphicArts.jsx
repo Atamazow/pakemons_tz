@@ -1,14 +1,13 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import { Line } from '@ant-design/plots';
-import {useSelector} from "react-redux";
 
-const GraphicArts = () => {
 
-    const pokemonItems = useSelector(state => state.pokemon.items)
+const GraphicArts = ({pokemons}) => {
+
 
     const data = useMemo(() => {
-        return pokemonItems.map(({order, id},index) => ({index, order}) )
-    },[pokemonItems]);
+        return pokemons.map(({order, id},index) => ({index, order}) )
+    },[pokemons]);
     const config = {
         data,
         xField: 'index',

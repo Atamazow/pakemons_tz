@@ -12,25 +12,21 @@ const Home = () => {
   const pokemonItems = useSelector((state) => state.pokemon.items);
   const token = useSelector((state) => state.auth.token);
   const types = useSelector(state => state.pokemon.types)
-//   const optionsSelect = useMemo(
-// useMemo    () => pokemonItems.map(({types}) => ({ label: types, value: types })),
-//     [pokemonItems]
-//   );
 
   console.log(types)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPokemons({ limit: token ? 9 : 10, offset: token ? 10 : 0 }));
   }, [token]);
+  const pokemons = useMemo(() =>{
+    return pokemonItems?.filter(({types}) => value == 'Без фильтра' || types.includes(value) )
+  }, [pokemonItems,types,value])
   return (
     <>
-      <NavLink to="/login"> Войти</NavLink>
+      <NavLink style={{fontSize:24, color: 'gray', textDecoration: "none"}} to="/login"> Войти</NavLink>
       <div style={{ display: "flex" }}>
-        {/*<NavLink to="/login"> Войти</NavLink>*/}
         <ul style={{ display: "flex", flexWrap: "wrap", listStyle: "none" }}>
-          {pokemonItems
-              ?.filter(({types}) => !types.includes(value))
-            .map((item) => {
+          {pokemons?.map((item) => {
               return <Pokemon key={item.id} name={item.name} url={item.url} />;
             })}
         </ul>
@@ -46,7 +42,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <GraphicArts />
+      <GraphicArts  pokemons={pokemons} />
     </>
   );
 };

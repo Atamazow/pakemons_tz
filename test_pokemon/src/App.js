@@ -10,8 +10,6 @@ function App() {
       className="App"
       style={{ width: 1140, margin: "auto", textAlign: "center" }}
     >
-
-      <NavLink to="/">Главная страница </NavLink>
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/login" element={ <Authorization />} />
