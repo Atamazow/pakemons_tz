@@ -1,0 +1,13 @@
+.link {
+    text-decoration: none;
+    color: gray;
+    font-size: 24px;
+}
+
+.select {
+    width: 120px;
+}
+.Form {
+    max-width: 570px;
+    margin: 30px auto;
+}

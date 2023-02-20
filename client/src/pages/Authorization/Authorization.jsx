@@ -1,38 +1,39 @@
-import { Button, Checkbox, Form, Input } from "antd";
-
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../redux/slices/applicationSlice";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Button, Form, Input } from "antd";
+import { selectToken } from "../../redux/authorization/selectors";
+import { signIn } from "../../redux/authorization/thunks";
+import styles from './Authorization.module.css'
+
 
 const Authorization = () => {
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onFinish = ({ login, password }) => {
+  const onFinish =  useCallback(({ login, password }) => {
     dispatch(signIn({ login, password }));
-  };
+  },[]);
+
   if (token) navigate("/");
 
   return (
     <>
       <NavLink
-        style={{ fontSize: 24, color: "gray", textDecoration: "none" }}
+        className={styles.link}
         to="/"
       >
-        Главная страница{" "}
+        Главная страница
       </NavLink>
       <Form
         name="basic"
         labelCol={{
           span: 4,
         }}
+        className={styles.Form}
         wrapperCol={{
           span: 16,
-        }}
-        style={{
-          maxWidth: 570,
-          margin: "30px auto",
         }}
         initialValues={{
           remember: true,

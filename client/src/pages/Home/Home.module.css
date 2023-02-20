@@ -1,0 +1,20 @@
+.link {
+    text-decoration: none;
+    color: gray;
+    font-size: 24px;
+}
+
+.pokemon_list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    width: 900px;
+}
+
+.content_top {
+    display: flex;
+}
+
+.select {
+    width: 120px;
+}

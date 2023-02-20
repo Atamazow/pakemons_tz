@@ -1,12 +1,12 @@
-import Authorization from "./pages/Authorization";
-import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
+import Authorization from "./pages/Authorization/Authorization";
+import Home from "./pages/Home/Home";
+import './index.css'
 
 function App() {
   return (
     <div
       className="App"
-      style={{ width: 1140, margin: "auto", textAlign: "center" }}
     >
       <Routes>
         <Route path="/" element={<Home />} />
@@ -15,5 +15,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

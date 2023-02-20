@@ -1,0 +1,1 @@
+export const selectPokemonTypes = (state) => state.pokemon.types

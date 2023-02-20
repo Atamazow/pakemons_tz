@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { Line } from "@ant-design/plots";
 
 const GraphicArts = ({ pokemons }) => {
@@ -40,4 +40,4 @@ const GraphicArts = ({ pokemons }) => {
   return <Line {...config} />;
 };
 
-export default GraphicArts;
+export default memo(GraphicArts);
