@@ -35,7 +35,7 @@ const Home = () => {
       >
         {" "}
         Войти
-      </NavLink>:  <NavLink
+      </NavLink> :  <NavLink
         style={{ fontSize: 24, color: "gray", textDecoration: "none" }}
         to="/login"
         onClick={handleRemoveTokenClick}
