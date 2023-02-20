@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 
 // библиотека которая захеширует пароли пользователя
 const bcrypt = require("bcrypt");
-const { settings } = require("express/lib/application");
 
 module.exports.usersController = {
   getAllUsers: async (req, res) => {
@@ -15,7 +14,7 @@ module.exports.usersController = {
    try {
      const { login, password } = req.body;
 
-     // с помощью этой переменной, мы хешируем пароль
+      // с помощью этой переменной, мы хешируем пароль
      const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS));
 
      const user = await User.create({ login: login, password: hash });
@@ -44,17 +43,14 @@ module.exports.usersController = {
     if (!valid) {
       return res.status(401).json({error: "Неверный пароль"});
     }
-
     // создаем Токен, вверхнем пайлоаде мы сохряем данные и запокоем их в токен и отдаем этот токен
     // пользователю, что бы при следующих запросах он присылал и мы могли проверить ее
     const payload = {
       id: candidate._id,
     };
-
     const token = await jwt.sign(payload, process.env.SECRET_JWT_KEY, {
       expiresIn: "240h",
     });
-
     res.json({
       token,
     });

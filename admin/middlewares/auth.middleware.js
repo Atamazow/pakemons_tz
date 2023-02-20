@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const Todo = require("../Todo.model");
+const Todo = require("../models/Todo.model");
 
 module.exports = async (req, res, next) => {
 

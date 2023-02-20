@@ -1,7 +1,7 @@
 const { todosController: todosRoute } = require("../controllers/todos.controller");
 const { Router } = require("express");
 const express = require("express");
-const authMiddleware = require('../models/middlewares/auth.middleware')
+const authMiddleware = require('../middlewares/auth.middleware')
 
 const router = Router();
 
