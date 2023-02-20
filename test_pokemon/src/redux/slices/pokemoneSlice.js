@@ -39,16 +39,17 @@ const pokemonSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPokemons.fulfilled, (state, action) => {
-      state.items = action.payload;
-      state.types = [
+      const uniqTypes = [
         ...new Set(
           action.payload.flatMap(({ types }) => types.map((type) => type))
         ),
       ];
+      state.items = action.payload;
+      state.types = [
+        { label: "Без фильтра", value: "" },
+        ...uniqTypes.map((type) => ({ label: type, value: type })),
+      ];
     });
   },
 });
-
-// export const {  } = pokemonSlice.actions
-
 export default pokemonSlice.reducer;

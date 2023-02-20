@@ -57,13 +57,16 @@ export const signIn = createAsyncThunk(
   }
 );
 
-// get users
-
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
     logOut: (state, action) => {
+      localStorage.removeItem("token");
+      state.token = null;
+    },
+    //
+    resetProfile: (state) => {
       localStorage.removeItem("token");
       state.token = null;
     },
@@ -102,7 +105,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const errorSelect = (state) => state.auth.error;
-export const signingInSelect = (state) => state.auth.signingIn;
+export const { resetProfile } = authSlice.actions;
 
 export default authSlice.reducer;

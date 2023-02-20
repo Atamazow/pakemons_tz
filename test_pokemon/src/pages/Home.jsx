@@ -5,34 +5,46 @@ import Pokemon from "../components/Pokemon";
 import GraphicArts from "../components/GraphicArts";
 import { Select } from "antd";
 import { NavLink } from "react-router-dom";
+import { resetProfile } from "../redux/slices/applicationSlice";
 
 const Home = () => {
-  const [value, setValue] = useState('Без фильтра');
+  const [value, setValue] = useState('');
 
   const pokemonItems = useSelector((state) => state.pokemon.items);
   const token = useSelector((state) => state.auth.token);
   const types = useSelector((state) => state.pokemon.types);
 
   const dispatch = useDispatch();
+  const handleRemoveTokenClick = () => {
+    dispatch(resetProfile())
+  }
+
   useEffect(() => {
     dispatch(fetchPokemons({ limit: token ? 9 : 10, offset: token ? 10 : 0 }));
   }, [token]);
   const pokemons = useMemo(() => {
     return pokemonItems?.filter(
-      ({ types }) => value == "Без фильтра" || types.includes(value)
+      ({ types }) => value == "" || types.includes(value)
     );
   }, [pokemonItems, types, value]);
   return (
     <>
-      <NavLink
+      {!token ?  <NavLink
         style={{ fontSize: 24, color: "gray", textDecoration: "none" }}
         to="/login"
       >
         {" "}
         Войти
-      </NavLink>
+      </NavLink>:  <NavLink
+        style={{ fontSize: 24, color: "gray", textDecoration: "none" }}
+        to="/login"
+        onClick={handleRemoveTokenClick}
+      >
+        {" "}
+        выйти
+      </NavLink>}
       <div style={{ display: "flex" }}>
-        <ul style={{ display: "flex", flexWrap: "wrap", listStyle: "none" }}>
+        <ul className='pokemon_list' style={{ display: "flex", flexWrap: "wrap", listStyle: "none" }}>
           {pokemons?.map((item) => {
             return <Pokemon key={item.id} name={item.name} url={item.url} />;
           })}
@@ -45,7 +57,7 @@ const Home = () => {
             style={{
               width: 120,
             }}
-            options={types.map((type) => ({ label: type, value: type }))}
+            options={types}
           />
         </div>
       </div>
