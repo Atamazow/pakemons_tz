@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
@@ -81,4 +81,4 @@ const Authorization = () => {
     </>
   );
 };
-export default Authorization;
+export default memo(Authorization);

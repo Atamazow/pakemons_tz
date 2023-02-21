@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Select } from "antd";
 import Pokemon from "../../components/Pokemon/Pokemon";
 import GraphicArts from "../../components/GraphicArts/GraphicArts";
 import { resetProfile } from "../../redux/authorization/slice";
-import { selectPokemonItems, selectToken } from "../../redux/authorization/selectors";
-import { selectPokemonTypes } from "../../redux/pokemons/selectors";
+import {  selectToken } from "../../redux/authorization/selectors";
+import { selectPokemonItems, selectPokemonTypes } from "../../redux/pokemons/selectors";
 import { fetchPokemons } from "../../redux/pokemons/thunks";
 import styles from './Home.module.css'
 
@@ -61,9 +61,9 @@ const Home = () => {
           />
         </div>
       </div>
-      <GraphicArts pokemons={pokemons} />
+         <GraphicArts pokemons={pokemons} />
     </>
   );
 };
 
-export default Home;
+export default memo(Home);
